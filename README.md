@@ -1,4 +1,4 @@
 hackerrank
 ==========
 
-HackerRank Challenges
+My solutions to HackerRank Challenges ( hackerrank.com )
