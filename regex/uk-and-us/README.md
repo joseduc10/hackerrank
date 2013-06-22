@@ -36,6 +36,3 @@ familiarize
 <p><strong>Explanation</strong></p>
 
 <p>In the given 2 lines, we find <em>familiarize</em> and <em>familiarise</em> once each. So, the total count is 2.</p>
-<!-- === end markdown block === -->
-
-<p class="text-align-right"><a href="#" align="right" class="js-suggest-edits">Suggest Edits</a></p>
