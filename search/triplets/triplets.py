@@ -34,7 +34,7 @@ def sol1(n,arr):
     seen = zeros(arr.max()) > 0
     #print arr
     for i in xrange(n-2,-1,-1):
-        for j in xrange(i,n):
+        for j in xrange(i+1,n):
             if arr[i] < arr[j]:
                 greater[i] = 1 + greater[j]
                 break
@@ -51,15 +51,73 @@ def sol1(n,arr):
             seen[ind] = True
     print total
 
+
+def sol2(n,arr):
+    totalTriplets = 0
+    arrMax = arr.max()
+    seen = zeros(arrMax) > 0
+    globalSeen = zeros(arrMax, int32)
+    greater = zeros((n), int16)
+    #g = [[] for i in xrange(n)]
+
+    for i in xrange(n-2,-1,-1):
+        #triplets = 0
+        a = arr[i]
+        seen[:] = False
+        #print "iteration %s: %s" %(i,arr[i])
+        for j in xrange(i+1, n):
+            b = arr[j]
+            #print a, b
+            if a == b:
+                greater[i] += greater[j]
+                #g[i] += g[j]
+                break
+            if b > a and not seen[b-1]:
+                if globalSeen[b-1] and globalSeen[a-1] \
+                                        and globalSeen[b-1] > globalSeen[a-1]:
+                    totalTriplets += greater[j] - greater[globalSeen[b-1]]
+                    #print globalSeen
+                    #print "Entered here"
+                else:
+                    totalTriplets += greater[j]
+                    #print "entered there"
+                    greater[i] += 1
+                #g[i].append(j)
+                #totalTriplets += greater[j]
+                #triplets += greater[j]
+                seen[b-1] = True
+        if not globalSeen[a-1]:
+            globalSeen[a-1] = i
+        #print globalSeen
+        #print "Total triplets from here: %s" %triplets
+        #totalTriplets += triplets
+    print totalTriplets
+    #triplets = []
+    #seen=[]
+    #for i in xrange(n):
+    #    a = g[i]
+    #    if a not in seen:
+    #        seen.append(a)
+    #        for j in xrange(len(a)):
+    #            b = g[a[j]]
+    #            for k in xrange(len(b)):
+    #                triplets.append((arr[i],arr[a[j]], arr[b[k]]))
+    #print len(set(triplets))
+    #for ind,i in enumerate(g):
+    #    print arr[ind], ':', [arr[j] for j in i]
+    #for i in triplets: print i
+
 def main():
     #reading the input
     global comb, fact
     n = int(raw_input())
     arr = array([int(i) for i in raw_input().split()],int32)
-    comb, fact = zeros((n), int64), zeros((n), int64)
-    fact[0] = 1
+    #initialization for sol1
+    #comb, fact = zeros((n), int64), zeros((n), int64)
+    #fact[0] = 1
 
-    sol1(n,arr)
+    #sol1(n,arr)
+    sol2(n,arr)
 
 if __name__=='__main__':
-main()
+    main()
