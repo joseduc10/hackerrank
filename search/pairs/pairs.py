@@ -12,8 +12,9 @@ def sol1(n,k,arr):
         Space complexity: O(max(arr)) =  O(2^31-1)
         Time complexity: O(n + max(arr))
 
-        Which makes this algorithm pseudo-polynomial and very slow for
-        high values of max(arr)
+        This algorithm is very slow for high values of max(arr). Along the same
+        lines, it depends on the value of the input, rather than the size, so
+        it's not a very satisfactory solution.
     '''
     exists = [False]
     for i in xrange(max(arr)):
